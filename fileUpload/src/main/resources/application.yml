@@ -1,0 +1,31 @@
+server:
+  port: 8050
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka
+  #    healthcheck:
+  #      enabled: true
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: file-upload-service
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 30MB
+  #  zipkin:
+  #    base-url: http://127.0.0.1:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+

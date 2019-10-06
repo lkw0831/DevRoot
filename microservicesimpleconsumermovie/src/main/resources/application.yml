@@ -1,0 +1,40 @@
+server:
+  port: 5678
+
+spring:
+  application:
+    name: movie-service
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+  zipkin:
+    base-url: http://127.0.0.1:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka
+    healthcheck:
+        enabled: true
+  instance:
+    prefer-ip-address: true
+
+feign:
+  hystrix:
+    enabled: true
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+logging:
+  level:
+    root: INFO
+#     org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.cloud.sleuth: DEBUG

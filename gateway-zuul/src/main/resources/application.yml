@@ -1,0 +1,51 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: gateway-zuul
+
+#    加上最大文件限制，与uploadservice保持一致，不然直接调用upload和通过网关掉的返回结果会不一样
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 30MB
+
+  sleuth:
+    sampler:
+      probability: 1.0
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+logging:
+  level:
+    com.netflix: DEBUG
+
+# 暴露所有的监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#路由规则
+zuul:
+  prefix: /api
+  strip-prefix: false
+  ignored-services: zhucezhongxin
+  routes:
+    movie-service:
+      path: /mov/**
+    name_id_not_important_2:
+      path: /usr/**
+      serviceId: user-service
+    file-upload-service:
+      path: /upload/**

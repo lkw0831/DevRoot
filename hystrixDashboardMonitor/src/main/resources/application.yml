@@ -1,0 +1,18 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  application:
+    name: hystrix
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+  instance:
+    prefer-ip-address: true
+
+server:
+  port: 8031
